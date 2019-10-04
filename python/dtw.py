@@ -23,7 +23,7 @@ def _python_dtw_path(dist):
   cost[:,0] = np.cumsum(dist[:,0])
   trace[0,:] = 1
   trace[:,0] = 0
-  for i,j in product(xrange(1,nx),xrange(1,ny)):
+  for i,j in product(range(1,nx),range(1,ny)):
     choices = dist[i,j] + np.array((cost[i-1,j], cost[i,j-1], cost[i-1,j-1]))
     trace[i,j] = choices.argmin()
     cost[i,j] = choices.min()

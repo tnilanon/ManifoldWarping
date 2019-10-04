@@ -38,7 +38,7 @@ class Correspondence(object):
       P = np.fliplr(P)
     warp_inds = np.zeros(A.shape[0], dtype=int)
     j = 0
-    for i in xrange(A.shape[0]):
+    for i in range(A.shape[0]):
       while P[j,0] < i:
         j += 1
       warp_inds[i] = P[j,1]

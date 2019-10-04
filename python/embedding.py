@@ -14,7 +14,7 @@ def lapeig(W=None, L=None, num_vecs=None, return_vals=False):
   vecs = vecs.real[:,idx]
   vals = vals.real[idx]
   # discard any with really small eigenvalues
-  for i in xrange(vals.shape[0]):
+  for i in range(vals.shape[0]):
     if vals[i] >= 1e-8:
       break
   if num_vecs is None:

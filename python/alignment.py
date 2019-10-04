@@ -3,6 +3,7 @@ import numpy as np
 import scipy as sp
 from neighborhood import laplacian
 from util import block_antidiag
+from functools import reduce
 
 
 def _manifold_setup(Wx,Wy,Wxy,mu):
@@ -14,13 +15,13 @@ def _manifold_setup(Wx,Wy,Wxy,mu):
 def _manifold_decompose(L,d1,d2,num_dims,eps,vec_func=None):
   vals,vecs = np.linalg.eig(L)
   idx = np.argsort(vals)
-  for i in xrange(len(idx)):
+  for i in range(len(idx)):
     if vals[idx[i]] >= eps:
       break
   vecs = vecs.real[:,idx[i:]]
   if vec_func:
     vecs = vec_func(vecs)
-  for i in xrange(vecs.shape[1]):
+  for i in range(vecs.shape[1]):
     vecs[:,i] /= np.linalg.norm(vecs[:,i])
   map1 = vecs[:d1,:num_dims]
   map2 = vecs[d1:d1+d2,:num_dims]
@@ -61,7 +62,7 @@ class Affine(LinearAlignment):
     assert c.shape[0] > 0, "Can't align data with no correlation"
     Xtrain = X[c[:,0]]
     Ytrain = Y[c[:,1]]
-    self.pY = np.linalg.lstsq(Ytrain,Xtrain)[0][:,:num_dims]
+    self.pY = np.linalg.lstsq(Ytrain,Xtrain,rcond=-1)[0][:,:num_dims]
     self.pX = np.eye(self.pY.shape[0],num_dims)
 
 

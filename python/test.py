@@ -2,7 +2,7 @@ import numpy as np
 import unittest
 from numpy.testing import assert_array_equal, assert_array_almost_equal
 from scipy.sparse import csr_matrix
-from StringIO import StringIO
+from io import StringIO ## for Python 3
 
 import alignment
 import correspondence

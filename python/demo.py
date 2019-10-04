@@ -77,14 +77,14 @@ if __name__ == '__main__':
     pyplot.figure()
     with Timer(name):
       Xnew,Ynew = aln().project(X, Y)
-    print ' sum sq. error =', pairwise_error(Xnew, Ynew, metric=SquaredL2)
+    print(' sum sq. error =', pairwise_error(Xnew, Ynew, metric=SquaredL2))
     show_alignment(Xnew,Ynew,name)
 
   for name, aln in other_aligners:
     pyplot.figure()
     with Timer(name):
       Xnew,Ynew = aln()
-    print ' sum sq. error =', pairwise_error(Xnew, Ynew, metric=SquaredL2)
+    print(' sum sq. error =', pairwise_error(Xnew, Ynew, metric=SquaredL2))
     show_alignment(Xnew, Ynew, name)
 
   pyplot.show()

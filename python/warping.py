@@ -46,7 +46,7 @@ def alternating_alignments(X,Y,proj_align,corr_align,threshold,max_iters):
   corr = Correspondence(pairs=np.array(((0,0),(X.shape[0]-1,Y.shape[0]-1))))
   aln = TrivialAlignment(X,Y)
   X_proj,Y_proj = X.copy(), Y.copy()  # same as aln.project(X,Y)
-  for it in xrange(max_iters):
+  for it in range(max_iters):
     aln.apply_transform(proj_align(X_proj,Y_proj,corr))
     X_proj,Y_proj = aln.project(X,Y)
     new_corr = corr_align(X_proj,Y_proj)
@@ -59,7 +59,7 @@ def alternating_alignments(X,Y,proj_align,corr_align,threshold,max_iters):
 def alternating_alignments_nonlinear(X,Y,proj_align,corr_align,threshold,max_iters):
   corr = Correspondence(pairs=np.array(((0,0),(X.shape[0]-1,Y.shape[0]-1))))
   X_proj,Y_proj = proj_align(X,Y,corr)
-  for it in xrange(max_iters):
+  for it in range(max_iters):
     new_corr = corr_align(X_proj,Y_proj)
     if corr.dist_from(new_corr) < threshold:
       return new_corr, X_proj, Y_proj

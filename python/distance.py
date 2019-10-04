@@ -1,7 +1,6 @@
 import numpy as np
 import scipy.spatial.distance as sd
 from sklearn.metrics.pairwise import euclidean_distances
-from itertools import izip
 
 '''Distance functions, grouped by metric.'''
 
@@ -21,7 +20,7 @@ class Metric(object):
 
   def pairwise(self,A,B):
     '''distances between pairs of rows in A and B'''
-    return np.array([self.dist(a,b) for a,b in izip(A,B)])
+    return np.array([self.dist(a,b) for a,b in zip(A,B)])
 
 
 class SparseL2Metric(Metric):
